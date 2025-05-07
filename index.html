@@ -15,7 +15,6 @@
             justify-content: flex-start;
             align-items: center;
             gap: 25px;
-
         }
     </style>
 </head>
@@ -55,10 +54,11 @@
         http.onreadystatechange = function () {
             console.log(http.readyState,"inside the on ready estate change")
         }
-        console.log("Request Finished")*/
-
+        console.log("Request Finished")
+    })*/
 
 /*        /!*--------------TASK ONE------------*!/
+ $('#ajax-btn').on('click',function () {
         var http = new XMLHttpRequest();
         http.open('GET','db.txt')
         http.send();
@@ -68,11 +68,14 @@
             }else if (http.status === 404 && http.readyState === 4){
                 alert("Missing URL")
             }
-        }*/
+        }
+})
+        */
 
 
 
      /*  /!*------------------Ajax Request using Jquery---------------------*!/
+      $('#ajax-btn').on('click',function () {
         $.ajax({
             url:'db.txt',
             method:'GET',
@@ -87,6 +90,7 @@
     })*/
 
      /*   /!*------------------Json Objects---------------------*!/
+      $('#ajax-btn').on('click',function () {
         $.ajax({
             url:'database.json',
             method:'GET',
@@ -103,9 +107,11 @@
     /*---------Map data to a Table----------------- */
 
     $('#ajax-btn').on('click',function () {
+        console.log("Start")
         $.ajax({
             url: 'database.json',
             method: 'GET',
+            async:'false',/*Synchronise behaviour blocked - Asynchronous Behaviour*/
             success: function (response) {
                 response.map((response) => {
                     let data = `<tr>
@@ -116,15 +122,14 @@
                         </tr>`
                     $('#customer-tbody').append(data);
                 })
+                console.log("completed")
             },
             error: function (error) {
                 console.log(error)
             }
         })
+        console.log("End")
     })
-
-
-
 </script>
 </body>
 </html>
