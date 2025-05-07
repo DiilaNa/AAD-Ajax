@@ -10,7 +10,9 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $('#ajax-btn').on('click',function (){
-        console.log("Button is clicked")
+        var http = new XMLHttpRequest();
+        http.open('GET','db.txt');
+        http.send();
     })
 </script>
 </body>
