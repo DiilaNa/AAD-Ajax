@@ -3,16 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajax</title>
+    <style>
+        #ajax-btn{
+            width: 100px;
+            height: 50px;
+            background-color: #0101cf;
+            color: whitesmoke;
+        }
+        .h{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 25px;
+
+        }
+    </style>
 </head>
 <body>
-<h1>Ajax</h1>
-<button id="ajax-btn">Send me Ajax</button>
+<div class="h">
+    <h1>Ajax</h1>
+    <button id="ajax-btn">Send me Ajax</button>
+</div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $('#ajax-btn').on('click',function (){
+        console.log("Request Start")
         var http = new XMLHttpRequest();
-        http.open('GET','db.txt');
+        console.log(http.readyState,"After XMLHttpRequest Obj Create");
+        http.open('GET','https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css');/* can add opensource links*/
+        // console.log(http.status);
+        console.log(http.readyState,"After XMLHttpRequest Obj Open");
         http.send();
+        // console.log(http.status);
+        console.log(http.readyState,"After sending method invoked");
+        http.onreadystatechange = function () {
+            console.log(http.readyState,"inside the on ready estate change")
+        }
+        console.log("Request Finished")
     })
 </script>
 </body>
