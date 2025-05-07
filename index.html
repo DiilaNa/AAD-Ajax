@@ -25,9 +25,24 @@
     <button id="ajax-btn">Send me Ajax</button>
     <label id="setText"></label>
 </div>
+<div>
+    <h5>Customer Records</h5>
+    <table>
+        <thead>
+        <tr>
+            <th >First-Name</th>
+            <th >Last-Name</th>
+            <th >Address</th>
+            <th >Contact_No</th>
+        </tr>
+        </thead>
+        <tbody id="customer-tbody">
+        </tbody>
+    </table>
+</div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-    $('#ajax-btn').on('click',function (){
+    // $('#ajax-btn').on('click',function (){
      /*   console.log("Request Start")
         var http = new XMLHttpRequest();
         console.log(http.readyState,"After XMLHttpRequest Obj Create");
@@ -71,7 +86,7 @@
         })
     })*/
 
-        /*------------------Json Objects---------------------*/
+     /*   /!*------------------Json Objects---------------------*!/
         $.ajax({
             url:'database.json',
             method:'GET',
@@ -83,7 +98,31 @@
             },
             // status:'200' ? $('setText').text(response): alert("error")
         })
+    })*/
+
+    /*---------Map data to a Table----------------- */
+
+    $('#ajax-btn').on('click',function () {
+        $.ajax({
+            url: 'database.json',
+            method: 'GET',
+            success: function (response) {
+                response.map((response) => {
+                    let data = `<tr>
+                            <td>${response.first_name}</td>
+                            <td>${response.second_name}</td>
+                            <td>${response.age}</td>
+                            <td>${response.mobile_no}</td>
+                        </tr>`
+                    $('#customer-tbody').append(data);
+                })
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
     })
+
 
 
 </script>
