@@ -26,7 +26,7 @@
 </div>
 <div>
     <h5>Customer Records</h5>
-    <table>
+    <table border="3">
         <thead>
         <tr>
             <th >First-Name</th>
@@ -106,12 +106,13 @@
 
     /*---------Map data to a Table----------------- */
 
+/*
     $('#ajax-btn').on('click',function () {
         console.log("Start")
         $.ajax({
             url: 'database.json',
             method: 'GET',
-            async:'false',/*Synchronise behaviour blocked - Asynchronous Behaviour*/
+            async:'false',/!*Synchronise behaviour blocked - Asynchronous Behaviour*!/
             success: function (response) {
                 response.map((response) => {
                     let data = `<tr>
@@ -122,6 +123,48 @@
                         </tr>`
                     $('#customer-tbody').append(data);
                 })
+                console.log("completed")
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+        console.log("End")
+    })
+*/
+
+    /*----------------- External Link Loaded -------------------------------*/
+
+    $('#ajax-btn').on('click',function () {
+        console.log("Start")
+        $.ajax({
+            url: ' https://jsonplaceholder.typicode.com/comments',
+            method: 'GET',
+            async:'false',/*Synchronise behaviour blocked - Asynchronous Behaviour*/
+            success: function (response) {
+               /* Using .Map() method*/
+               response.map((response) => {
+                    let data = `<tr>
+                            <td>${response.postId}</td>
+                            <td>${response.id}</td>
+                            <td>${response.name}</td>
+                            <td>${response.email}</td>
+                             <td>${response.body}</td>
+                        </tr>`
+                    $('#customer-tbody').append(data);
+                })
+
+             /*   // Using for Loop
+                for (var i = 0; i < response.length; i++) {
+                    let data = `<tr>
+                            <td>${response[i].postId}</td>
+                            <td>${response[i].id}</td>
+                            <td>${response[i].name}</td>
+                            <td>${response[i].email}</td>
+                             <td>${response[i].body}</td>
+                        </tr>`
+                    $('#customer-tbody').append(data);
+                }*/
                 console.log("completed")
             },
             error: function (error) {
