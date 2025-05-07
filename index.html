@@ -57,7 +57,7 @@
 
 
 
-       /*------------------Ajax Request using Jquery---------------------*/
+     /*  /!*------------------Ajax Request using Jquery---------------------*!/
         $.ajax({
             url:'db.txt',
             method:'GET',
@@ -69,7 +69,23 @@
             },
             // status:'200' ? $('setText').text(response): alert("error")
         })
+    })*/
+
+        /*------------------Json Objects---------------------*/
+        $.ajax({
+            url:'database.json',
+            method:'GET',
+            success:function (response) {
+               $('#setText').text(response.first_name + " " + response.second_name + " " + response.age + " " +response.mobile_no)
+            } ,
+            error:function (error) {
+                console.log(error)
+            },
+            // status:'200' ? $('setText').text(response): alert("error")
+        })
     })
+
+
 </script>
 </body>
 </html>
