@@ -43,15 +43,32 @@
         console.log("Request Finished")*/
 
 
-        /*--------------TASK ONE------------*/
+/*        /!*--------------TASK ONE------------*!/
         var http = new XMLHttpRequest();
         http.open('GET','db.txt')
         http.send();
         http.onreadystatechange = function () {
             if (http.status === 200 && http.readyState ===4){
                 $('#setText').text(http.response);
+            }else if (http.status === 404 && http.readyState === 4){
+                alert("Missing URL")
             }
-        }
+        }*/
+
+
+
+       /*------------------Ajax Request using Jquery---------------------*/
+        $.ajax({
+            url:'db.txt',
+            method:'GET',
+            success:function (response) {
+                console.log(response)
+            } ,
+            error:function (error) {
+                console.log(error)
+            },
+            // status:'200' ? $('setText').text(response): alert("error")
+        })
     })
 </script>
 </body>
